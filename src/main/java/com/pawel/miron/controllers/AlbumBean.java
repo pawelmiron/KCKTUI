@@ -42,7 +42,6 @@ public class AlbumBean implements Serializable {
         album.setId(null);
         em.persist(album);
         em.getTransaction().commit();
-
         em.close();
         this.album = new Album();
 
@@ -52,7 +51,6 @@ public class AlbumBean implements Serializable {
         EntityManager em = DBManager.getManager().createEntityManager();
         this.album = em.find(Album.class, album.getId());
         em.close();
-
     }
 
     public List<Album> getAllAlbums() {
@@ -80,8 +78,6 @@ public class AlbumBean implements Serializable {
 
 
     }
-
-    
 
     public void edytuj() {
         EntityManager em = DBManager.getManager().createEntityManager();

@@ -64,8 +64,6 @@ public class Album implements Serializable {
         this.genre = genre;
     }
     
-    
-
     public Album(Integer id) {
         this.id = id;
     }
