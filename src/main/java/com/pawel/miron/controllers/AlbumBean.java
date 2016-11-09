@@ -15,6 +15,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -58,6 +59,17 @@ public class AlbumBean implements Serializable {
         List list = em.createNamedQuery("Album.findAll", Album.class).getResultList();
         em.close();
         return list;
+    }
+    
+    
+    public Album getAlbumById(Integer id){
+        Album albumm;
+        EntityManager em = DBManager.getManager().createEntityManager();
+        Query query = em.createNamedQuery("Album.findById", Album.class);
+        query.setParameter("id", id);
+        albumm = (Album) query.getSingleResult();
+        em.close();
+        return albumm;
     }
 
     public void zaladujDoEdycji() {

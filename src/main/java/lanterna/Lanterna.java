@@ -195,7 +195,24 @@ public class Lanterna {/////////////////////////////////////////////////////////
         });
         GoBackButton.setAlignment(Alignment.TOP_RIGHT);
         
-        DUdodaj = new Button("Dodaj");
+        DUdodaj = new Button("Dodaj", new Action(){
+        @Override
+            public void doAction() {
+            TextBox textbox;
+         textbox = (TextBox) DUrow1[1];
+         songBean.getSong().setAlbumId(albumBean.getAlbumById(Integer.parseInt(textbox.getText())));
+         textbox.setText("");
+         textbox = (TextBox) DUrow2[1];
+         songBean.getSong().setTitle(textbox.getText());
+         textbox.setText("");
+
+         songBean.dodaj();
+            PUtable.removeAllRows();
+            InitializeListOfSongs();
+            guiScreen.getActiveWindow().close();
+            }
+        });
+        
         DUdodaj.setAlignment(Alignment.RIGHT_CENTER);
         
         dodaj1 = new Button("Dodaj", new Action() {
