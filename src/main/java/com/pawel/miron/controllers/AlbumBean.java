@@ -79,10 +79,10 @@ public class AlbumBean implements Serializable {
 
     }
 
-    public void usun() {
+    public void usun(Integer id) {
         EntityManager em = DBManager.getManager().createEntityManager();
         em.getTransaction().begin();
-        this.album = em.find(Album.class, album.getId());
+        this.album = em.find(Album.class, id);
         em.remove(this.album);
         this.album = new Album();
         em.getTransaction().commit();
