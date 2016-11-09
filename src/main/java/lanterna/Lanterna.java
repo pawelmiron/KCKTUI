@@ -103,6 +103,7 @@ public class Lanterna {/////////////////////////////////////////////////////////
         private Component[] EArow3;
         private Component[] EArow4;
         private Button EAButton;
+        private Album EdytowanyAlbum;
     
     
     //Constreucting TUI Objects
@@ -220,7 +221,33 @@ public class Lanterna {/////////////////////////////////////////////////////////
         EArow3[1] = new TextBox("", 69);
         EArow4[0] = new Label("   URL");
         EArow4[1] = new TextBox("", 69);
-        EAButton = new Button("Edytuj");
+        EAButton = new Button("Edytuj", new Action(){
+        @Override
+        public void doAction(){
+        
+               
+                TextBox textbox;
+                
+                textbox = (TextBox) EArow1[1];
+                EdytowanyAlbum.setArtist(textbox.getText());
+                textbox.setText("");
+                textbox = (TextBox) EArow2[1];
+                EdytowanyAlbum.setTitle(textbox.getText());
+                textbox.setText("");
+                textbox = (TextBox) EArow3[1];
+                EdytowanyAlbum.setGenre(textbox.getText());
+                textbox.setText("");
+                textbox = (TextBox) EArow4[1];
+                EdytowanyAlbum.setLogo(textbox.getText());
+                textbox.setText("");
+                albumBean.setAlbum(EdytowanyAlbum);
+                albumBean.edytuj();
+                tableAlbum.removeAllRows();
+                InitializeListOfAlbums();
+                guiScreen.getActiveWindow().close();
+
+        }
+        });
         EAButton.setAlignment(Alignment.RIGHT_CENTER);
     }
 
@@ -280,8 +307,7 @@ public class Lanterna {/////////////////////////////////////////////////////////
             @Override
             public void doAction() {
 
-                //albumBean.getAlbum().setGenre();
-                //albumBean.getAlbum().setLogo();
+               
                 TextBox textbox;
 
                 textbox = (TextBox) DArow1[1];
@@ -448,7 +474,17 @@ public class Lanterna {/////////////////////////////////////////////////////////
             PArow[4] = new Button("Edytuj", new Action(){
             @Override
             public void doAction(){
-                
+                EdytowanyAlbum = album;
+                TextBox textbox = new TextBox();
+                textbox = (TextBox) EArow1[1];
+                textbox.setText(album.getArtist());
+                textbox = (TextBox) EArow2[1];
+                textbox.setText(album.getTitle());
+                textbox = (TextBox) EArow3[1];
+                textbox.setText(album.getGenre());
+                textbox = (TextBox) EArow4[1];
+                textbox.setText(album.getLogo());
+                guiScreen.showWindow(EAWindow);
             }
             });
             PArow[5] = new Button("Usun", new Action(){
