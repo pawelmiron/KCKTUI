@@ -16,7 +16,7 @@ public class main {
 
     public static void main(String[] args) {
      Lanterna lanterna = new Lanterna();
-     lanterna.lanterna();
+     lanterna.TUI();
     
     }
 }
